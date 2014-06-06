@@ -32,6 +32,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'south',
 
     'ddns',
 )
@@ -69,3 +70,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+from private_settings import *
