@@ -1,0 +1,19 @@
+if [ -z $VIRTUAL_ENV ]; then
+    . ./startenv
+fi
+
+# pip setup
+if [ -f "requirements.txt" ]; then
+    pip install pip==1.5.4
+    yes w | pip install -r requirements.txt
+fi
+
+# npm setup
+if [ -f "package.json" ]; then
+    npm install
+fi
+
+# bower setup
+if [ -f "bower.json" ]; then
+    `npm bin`/bower install
+fi
