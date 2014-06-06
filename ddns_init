@@ -14,7 +14,7 @@ PIDFILE=$RUNDIR/gunicorn.pid
 LOGFILE=/var/log/gunicorn-ddns.log
 
 APP_DIR=/var/vhost/ddns.thatpanda.com/
-SCRIPT="bash -ec 'cd $APP_DIR; . python_env/bin/activate; gunicorn ddns.wsgi:application -D -w 4 -b unix:$SOCKETFILE'"
+SCRIPT="bash -ec 'cd $APP_DIR; . python_env/bin/activate; gunicorn ddns_project.wsgi:application -D -w 4 -b unix:$SOCKETFILE'"
 RUNAS=www-data
 
 start() {

@@ -2,7 +2,7 @@
 *.swp
 *~
 /bower_components
-/ddns/private_settings.py
+/ddns_project/private_settings.py
 /node_modules
 /python_env
 /static
