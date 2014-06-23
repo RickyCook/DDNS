@@ -3,6 +3,8 @@ import base64
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 
+from ddns.models import Record
+
 
 def basic_http_auth(f):
     """
@@ -36,5 +38,23 @@ def update(request):
     Service an update request in the form of
     /update?ipv6=<ip6addr>&ipv4=<ipaddr>&domain=<domain>
     """
-    import datetime
-    return HttpResponse("<html><body>It is now %s.</body></html>" % datetime.datetime.now())
+    from pprint import pformat
+    if 'ipv4' not in request.GET and 'ipv6' not in request.GET:
+        return HttpResponse("Must specify one or both of ipv4/ipv6 address\nParams:%s" % pformat(request.GET.dict()), status=400)
+    if not u'domain' in request.GET:
+        return HttpResponse("Must specify domain\nParams:%s" % pformat(request.GET.dict()), status=400)
+
+    for ipvx, record_type in ((u'ipv4', 'A'), (u'ipv6', 'AAAA')):
+        if ipvx not in request.GET:
+            continue
+        record, created = Record.objects.get_or_create(
+            name=request.GET['domain'],
+            type=record_type,
+        )
+        record.domain_id = 1
+        record.ttl = 1
+        record.auth = True
+        record.content = request.GET[ipvx]
+        record.save()
+
+    return HttpResponse("Saved record(s)")

@@ -3,3 +3,5 @@ class DBRouter(object):
         if hasattr(model, 'pdns') and model.pdns:
             return 'pdns'
         return None
+    def db_for_write(self, *args, **kwargs):
+        return self.db_for_read(*args, **kwargs)
