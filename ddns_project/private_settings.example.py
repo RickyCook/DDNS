@@ -8,5 +8,12 @@ DATABASES = {
         'USER': 'thatpanda_ddns',
         'PASSWORD': '',
         'HOST': '/var/run/postgresql',
+    },
+    'pdns': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'pdns',
+        'USER': 'thatpanda_ddns',
+        'PASSWORD': '',
+        'HOST': '/var/run/postgresql',
     }
 }

@@ -75,4 +75,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'bower_components'),
 )
 
+DATABASE_ROUTERS = [
+    'ddns.DBRouter',
+]
+
 from private_settings import *
