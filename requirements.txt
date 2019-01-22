@@ -3,5 +3,5 @@ South==1.0.2
 argparse==1.4.0
 distribute==0.7.3
 gunicorn==19.9.0
-psycopg2==2.7.6.1
+psycopg2==2.7.7
 wsgiref==0.1.2
